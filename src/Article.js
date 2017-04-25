@@ -11,24 +11,47 @@ export default class Article extends Component {
     }
 */
     state = {
-        isOpen: false
+        isOpen: false,
+        isCommentsOpen: false
     }
 
     render() {
         const {article} = this.props
+        let commLink = 'Show comments'
+        if(this.state.isCommentsOpen){
+           commLink = 'Hide comments' 
+        }
         return (
             <section>
                 <h2 onClick={this.toggleOpen}>
                     {article.title}
                 </h2>
-                {this.getBody()}
-                <CommentList comments={article.comments} />
+                {this.getBody(commLink)}
             </section>
         )
     }
 
-    getBody() {
-        return this.state.isOpen && <div>{this.props.article.text}</div>
+    getBody(link) {
+        return this.state.isOpen && 
+            <div>
+                {this.props.article.text}
+                <div>
+                    <a onClick={this.toggleComments}>
+                        <b>{link} ({this.props.article.comments.length})</b>
+                    </a>
+                    {this.getComments()}
+                </div>
+            </div>
+    }
+
+    getComments() {
+        return this.state.isCommentsOpen && <CommentList comments={this.props.article.comments} />
+    }
+
+    toggleComments = () => {
+        this.setState({
+            isCommentsOpen: !this.state.isCommentsOpen
+        })    
     }
 
     toggleOpen = (ev) => {
