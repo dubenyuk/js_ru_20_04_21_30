@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
 
 export default class Article extends Component {
 /*
@@ -21,6 +22,7 @@ export default class Article extends Component {
                     {article.title}
                 </h2>
                 {this.getBody()}
+                <CommentList comments={article.comments} />
             </section>
         )
     }
