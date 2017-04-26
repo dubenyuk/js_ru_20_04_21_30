@@ -12,6 +12,7 @@ export default class Article extends Component {
 */
     state = {
         isOpen: false,
+        //лучше внести этот стейт в CommentList, иначе компонент выходит очень прегруженным
         isCommentsOpen: false
     }
 
@@ -37,6 +38,7 @@ export default class Article extends Component {
                 {this.props.article.text}
                 <div>
                     <a onClick={this.toggleComments}>
+                        {/*comments может быть undefined*/}
                         <b>{link} ({this.props.article.comments.length})</b>
                     </a>
                     {this.getComments()}
