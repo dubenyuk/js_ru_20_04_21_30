@@ -5,12 +5,17 @@ export default (OriginalComponent) => class DecoratedComponent extends ReactComp
     constructor(props) {
         super()
         this.state = {
-            isOpen: false
+            isOpen: false,
+            openArticleId: null
         }
     }
 
     render() {
-        return <OriginalComponent {...this.props} isOpen={this.state.isOpen} toggleOpen={this.toggleOpen}/>
+        return <OriginalComponent {...this.props} 
+            openArticleId={this.state.openArticleId} 
+            isOpen={this.state.isOpen} 
+            toggleOpen={this.toggleOpen}
+            toggleArticle={this.toggleArticle}/>
     }
 
     toggleOpen = ev => {
@@ -18,6 +23,10 @@ export default (OriginalComponent) => class DecoratedComponent extends ReactComp
         this.setState({
             isOpen: !this.state.isOpen
         })
+    }
+
+    toggleArticle = openArticleId => ev => {
+        this.setState({openArticleId})
     }
 
 }
