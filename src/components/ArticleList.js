@@ -22,7 +22,9 @@ class ArticleList extends Component {
 }
 
 ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    openArticleId: PropTypes.number.isRequired,
+    toggleArticle: PropTypes.func.isRequired
 }
 
 export default toggleArticle(ArticleList)

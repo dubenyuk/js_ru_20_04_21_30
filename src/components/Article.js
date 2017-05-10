@@ -16,7 +16,9 @@ class Article extends Component {
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        }).isRequired
+        }).isRequired,
+        toggleOpen: PropTypes.func.isRequired,
+        isOpen: PropTypes.bool.isRequired
     }
 
     componentDidMount() {
